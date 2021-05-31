@@ -45,13 +45,13 @@ public class MyAndroidDriver {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("automationName", "uiautomator2");
         caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", "10");
-        caps.setCapability("deviceName", "64eea528");
+        caps.setCapability("platformVersion", "11");
+        caps.setCapability("deviceName", "emulator-5554");
         caps.setCapability("appPackage", "com.mobiquityinc.mitigo");
 //        caps.setCapability("appActivity", "com.swaglabsmobileapp.SplashActivity");
         caps.setCapability("noReset", true);
-        caps.setCapability("app", "C:\\indra backup\\REPO\\tigo_colombia\\mobile\\oneapp\\src\\test\\resources\\app\\app-debug_UAT_629.apk");
-        driver = new AppiumDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+        caps.setCapability("app", "C:\\Users\\advelasquez\\eclipse-workspace\\appium_device_farm\\src\\test\\resources\\app\\app-debug_UAT_5.1.0.apk");
+        driver = new AppiumDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps);
         return new MyAndroidDriver();
     }
 
