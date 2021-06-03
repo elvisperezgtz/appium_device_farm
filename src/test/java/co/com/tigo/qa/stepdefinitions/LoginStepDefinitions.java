@@ -1,10 +1,12 @@
 package co.com.tigo.qa.stepdefinitions;
-
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 import co.com.tigo.qa.questions.MisServicios;
-import co.com.tigo.qa.task.GoTo;
-import co.com.tigo.qa.task.LoginWith;
-import co.com.tigo.qa.task.Omitir;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
+import co.com.tigo.qa.questions.TheElementVisibility;
+import co.com.tigo.qa.task.*;
 import co.com.tigo.qa.userinterfaces.HomeAppUI;
+import co.com.tigo.qa.userinterfaces.ComprarUI;
 import co.com.tigo.qa.utils.MyAndroidDriver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -28,12 +30,13 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 public class LoginStepDefinitions {
     public static String accessKey = "elvisperezgtz_Er0QPh";
     public static String userName = "hJoskWauw1zLtGoSqtpz";
+    private Utill utillVAr;
 
 
 
     @Managed(driver = "appium")
-    //AppiumDriver<MobileElement> hisBrowser;
-    private WebDriver hisBrowser;
+    private AppiumDriver<MobileElement> hisBrowser;
+  //  private WebDriver hisBrowser;
     private Actor david = Actor.named("David");
 
 
@@ -41,10 +44,9 @@ public class LoginStepDefinitions {
     @Before
     public void setUp() throws MalformedURLException {
 
-        //hisBrowser.manage().window().maximize();
+
         david.can(BrowseTheWeb.with(hisBrowser));
-        //Stage stage = OnStage.setTheStage(new OnlineCast());
-        //OnStage.theActorCalled("James");
+
     }
 
     @Given("^El usuario registrado se encuentra en la OneApp$")
@@ -56,17 +58,13 @@ public class LoginStepDefinitions {
 
     @When("^El inicia sesion en la app por medio del correo electronico$")
     public void elIniciaSesionEnLaAppPorMedioDelCorreoElectronico() throws InterruptedException {
-        david.wasAbleTo(LoginWith.emailAndPassword("automatizacionmicuenta@gmail.com", "Tigo2019"),
-                GoTo.the(HomeAppUI.SALTAR_BIO),
-                GoTo.the(HomeAppUI.SELEC_LINEA));
-        
+        david.wasAbleTo(LoginWith.emailAndPassword("pruebastigo2014@gmail.com", "123456789Pb"),
+                GoTo.the(HomeAppUI.SALTAR_BIO));
         Thread.sleep(5000);
+        david.wasAbleTo(Scroll.toElement("ABAJO"),
+                GoTo.the(HomeAppUI.SELEC_LINEA));
 
-        //theActorInTheSpotlight().attemptsTo(
-        //        //Omitir.actualizacionDisponible(),
-       //         LoginWith.emailAndPassword("automatizacionmicuenta@gmail.com", "Tigo2019")
-     //   );
-
+        Thread.sleep(5000);
     }
 
     @Then("^El deberia poder ver los detalles de la linea$")
@@ -76,9 +74,15 @@ public class LoginStepDefinitions {
                 GoTo.the(HomeAppUI.COMPRAS_ONEAPP));
         Thread.sleep(5000);
 
-        //theActorInTheSpotlight().should(
-          //      GivenWhenThen.seeThat(MisServicios.disponibles(), Matchers.is(true))
-       // );
+        david.attemptsTo(
+                GoTo.the(ComprarUI.PAQUETE_PREPAGO),
+                GoTo.the(ComprarUI.SALDO_DE_RECARGA));
+
+        david.attemptsTo(GoTo.the(ComprarUI.BOTON_PAGAR));
+        Thread.sleep(5000);
+
+        david.should(seeThat(the(ComprarUI.COMPRA_EXITOSA),isCurrentlyVisible()));
+        david.should(seeThat(the(ComprarUI.COMPRA_EXITOSA),isCurrentlyVisible()));
     }
 
 }
