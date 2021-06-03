@@ -6,22 +6,25 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.targets.Target;
 
 public class Scroll implements Interaction {
 
-    String direccion;
+    String dir;
+    private Target target;
 
-    public Scroll( String direccion) {
-        this.direccion = direccion;
+    public Scroll(String dir,Target target){
+        this.dir = dir;
+        this.target = target;
     }
 
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Utill.deslizaHacia(direccion, HomeAppUI.SELEC_LINEA.resolveFor(actor), BrowseTheWeb.as(actor).getDriver());
+        Utill.deslizaHacia(dir, target.resolveFor(actor), BrowseTheWeb.as(actor).getDriver());
     }
 
-    public static Scroll toElement( String direccion){
-        return Tasks.instrumented(Scroll.class , direccion);
+    public static Scroll toElement( String dir, Target target){
+        return Tasks.instrumented(Scroll.class , dir,target);
     }
 }

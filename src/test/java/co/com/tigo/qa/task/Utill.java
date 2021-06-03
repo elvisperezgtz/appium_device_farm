@@ -14,27 +14,6 @@ import java.time.Duration;
 
 public class Utill {
 
-    private void scrollDown() throws InterruptedException {
-
-        //AppiumDriver driver = MyCustomDriver.getDriver();
-        //Dimension size = driver.manage().window().getSize();
-        //int width = size.width / 2;
-        //int startPoint = (int) (size.getHeight() * 0.80);
-        //int endPoint = (int) (size.getHeight() * 0.20);
-        //new TouchAction(driver).press(PointOption.point(width, startPoint)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(width, endPoint)).release().perform();
-    }
-
-    public void ScrollTwo(WebDriver driver) {
-        WebDriver driverTwo= ((WebDriverFacade) driver).getProxiedDriver();
-        TouchAction actions = new TouchAction((MobileDriver)driverTwo) ;
-        Dimension size = driver.manage().window().getSize();
-        int width = size.width / 2;
-        int startPoint = (int) (size.getHeight() * 0.80);
-        int endPoint = (int) (size.getHeight() * 0.20);
-
-        actions.press(PointOption.point(width, startPoint)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(width, endPoint)).release().perform();
-    }
-
     public static void deslizaHacia(String direccion, WebElementFacade elemento, WebDriver facade){
         WebDriver driver= ((WebDriverFacade) facade).getProxiedDriver();
         TouchAction actions = new TouchAction((MobileDriver)driver) ;
@@ -51,7 +30,7 @@ public class Utill {
 
                     actions.press(PointOption.point(puntoX, abajoY)).moveTo(PointOption.point(puntoX, arribaY)).release().perform();
                     intento--;
-//                    if (elemento.isVisible()){
+//                    if (elemento.isCurrentlyVisible()){
 //                        break;
 //                    }
                 }

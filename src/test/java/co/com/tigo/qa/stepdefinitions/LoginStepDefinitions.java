@@ -61,7 +61,7 @@ public class LoginStepDefinitions {
         david.wasAbleTo(LoginWith.emailAndPassword("pruebastigo2014@gmail.com", "123456789Pb"),
                 GoTo.the(HomeAppUI.SALTAR_BIO));
         Thread.sleep(5000);
-        david.wasAbleTo(Scroll.toElement("ABAJO"),
+        david.wasAbleTo(Scroll.toElement("ABAJO",HomeAppUI.SELEC_LINEA),
                 GoTo.the(HomeAppUI.SELEC_LINEA));
 
         Thread.sleep(5000);
@@ -83,6 +83,6 @@ public class LoginStepDefinitions {
 
         david.should(seeThat(the(ComprarUI.COMPRA_EXITOSA),isCurrentlyVisible()));
         david.should(seeThat(the(ComprarUI.COMPRA_EXITOSA),isCurrentlyVisible()));
-    }
+   }
 
 }
