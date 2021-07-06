@@ -2,20 +2,26 @@ package co.com.tigo.qa.userinterfaces;
 
 import io.appium.java_client.MobileBy;
 import net.serenitybdd.screenplay.targets.Target;
+import org.openqa.selenium.By;
 
 public class LoginUI {
 
     public static final Target INGRESAR_CON_CORREO = Target.the("Boton ingresar con correo")
-            .locatedBy("//android.widget.Button[contains(@text,'INGRESAR CON CORREO')] | //*[@resource-id=\"goToLogin\"]");
+            .locatedForAndroid(By.xpath("//android.widget.Button[contains(@text,'INGRESAR CON CORREO')] | //*[@resource-id=\"goToLogin\"]"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"goToLogin\"]"));
 
     public static final Target CAMPO_CORREO = Target.the("Campo correo")
-            .locatedBy("(//android.widget.EditText)[1]");
+            .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeTextField[@name=\"Correo electrónico\"]"));
 
     public static final Target CAMPO_CONTRASENIA = Target.the("Campo contrasenia")
-            .locatedBy("(//android.widget.EditText)[2]");
+            .locatedForAndroid(By.xpath("(//android.widget.EditText)[2]"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeSecureTextField[@name=\"Contraseña\"]"));
 
     public static final Target BOTON_INGRESAR = Target.the("Boton ingresar")
-            .locatedBy("//android.widget.Button[@text='enterOk']");
+            .locatedForAndroid(By.xpath("//android.widget.Button[@text='enterOk']"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"enterOk\"]"));
+
 
     public static final Target OLVIDO_CONTRASENIA = Target.the("¿Olvidaste tu contrasenia")
             .locatedBy("//*[@resource-id='forgotPasswordLbl']");
