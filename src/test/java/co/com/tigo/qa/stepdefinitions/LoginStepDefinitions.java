@@ -52,7 +52,7 @@ public class LoginStepDefinitions {
     @Given("^El usuario registrado se encuentra en la OneApp$")
     public void elUsuarioRegistradoSeEncuentraEnLaOneApp() throws MalformedURLException {
         //OnStage.theActorInTheSpotlight().can(BrowseTheWeb.with(MyAndroidDriver.hisLocalAndroidDriver().enLaApp()));
-        david.wasAbleTo(Omitir.actualizacionDisponible());
+//        david.wasAbleTo(Omitir.actualizacionDisponible());
 
     }
 
